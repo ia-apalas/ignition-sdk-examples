@@ -9,14 +9,7 @@ import "../_styles.scss";
 
 const GatewayInfoComponent = () => {
 
-  const { data={}, isSuccess, isError, error } = useGetInfoQuery("info", {
-    selectFromResult: ({ data, isSuccess, isError, error }) => ({
-      data,
-      isSuccess,
-      isError,
-      error,
-    }),
-  });
+  const { data={}, isSuccess, isError, error } = useGetInfoQuery();
   const { notifyError } = useToastNotifications();
 
   useEffect(() => {
@@ -28,7 +21,7 @@ const GatewayInfoComponent = () => {
         console.log(JSON.stringify(data, null, 2));
       }
     }
-  }, [error]);
+  }, [isError, isSuccess, error, data, notifyError]);
 
   return (
     <div className="gateway-info">

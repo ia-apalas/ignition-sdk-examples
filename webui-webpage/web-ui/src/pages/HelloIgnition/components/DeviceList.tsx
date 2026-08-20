@@ -27,15 +27,7 @@ const DeviceListComponent = () => {
     isLoading,
     isError,
     error,
-  } = useGetDevicesQuery(queryParams, {
-    selectFromResult: ({ data, isSuccess, isLoading, isError, error }) => ({
-      data,
-      isSuccess,
-      isLoading,
-      isError,
-      error,
-    }),
-  });
+  } = useGetDevicesQuery(queryParams);
 
   const { notifyError } = useToastNotifications();
 
@@ -48,7 +40,7 @@ const DeviceListComponent = () => {
         console.log(JSON.stringify(data, null, 2));
       }
     }
-  }, [error]);
+  }, [data, isError, isSuccess, error, notifyError]);
 
   const colDefs = useMemo(() => {
     return [
